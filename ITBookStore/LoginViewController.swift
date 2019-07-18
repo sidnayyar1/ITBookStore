@@ -77,14 +77,14 @@ class LoginViewController: UIViewController {
                                     userDefault.removeObject(forKey: "userPassword")
                                     
                                 }
-                                
+                                self.performSegue(withIdentifier: "toTheMenu", sender: nil)
                                 loggedIn = true
                                 
                                 
                                 
                             
                         }else{
-                      
+                            
                         }
                     }
                 }
