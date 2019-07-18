@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
 
     
      var loggedIn = false
+    //var validEmail = false
     @IBOutlet weak var switchRememberMe: UISwitch!
     @IBOutlet weak var txtEmail: UITextField!
         {
@@ -49,6 +50,8 @@ class LoginViewController: UIViewController {
     @IBAction func btnLogin(_ sender: Any) {
         var email = self.txtEmail.text!
         var password = self.txtPassword.text!
+        
+       
         let userDefault = UserDefaults.standard
         
         if let plist = Bundle.main.path(forResource: "UserInfo", ofType: "plist")
@@ -59,6 +62,9 @@ class LoginViewController: UIViewController {
                 {
                     for user in users
                     {
+                        
+                       // if email.validateEmail(){
+                       //     print("valid email")
                         
                             if ( (email == (user["userEmail"] as! String)) && (password == (user["password"] as! String)) ){
                                 
@@ -79,9 +85,8 @@ class LoginViewController: UIViewController {
                                 }
                                 self.performSegue(withIdentifier: "toTheMenu", sender: nil)
                                 loggedIn = true
-                                
-                                
-                                
+                           // }
+                           
                             
                         }else{
                             
@@ -90,26 +95,43 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        if !loggedIn{
-            
-            let alert = UIAlertController(title: "Error", message: "User Email / Password Incorrect", preferredStyle: UIAlertController.Style.alert)
-            
-            let actionOk = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-            let actionCanel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-            alert.addAction(actionOk)
-            alert.addAction(actionCanel)
-            self .present(alert, animated: true ,completion: nil)
-            
-        }
-        
+         //   else{
+           //     print("invalid email")
 
+            
+        if !loggedIn{
+//            if email.validateEmail(){
+//
+//            let alert = UIAlertController(title: "Error", message: "User Email is incorrect", preferredStyle: UIAlertController.Style.alert)
+//
+//            let actionOk = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+//            let actionCanel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+//            alert.addAction(actionOk)
+//            alert.addAction(actionCanel)
+//            self .present(alert, animated: true ,completion: nil)
+//            }
+//             else {
+                let alert = UIAlertController(title: "Error", message: "User Email / Password Incorrect", preferredStyle: UIAlertController.Style.alert)
+                
+                let actionOk = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                let actionCanel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(actionOk)
+                alert.addAction(actionCanel)
+                self .present(alert, animated: true ,completion: nil)
+            }
+        }
+    
+   //keyboard disappear user touches on screen
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        self.view.endEditing(true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
+
 
