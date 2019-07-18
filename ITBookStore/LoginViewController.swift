@@ -62,10 +62,30 @@ class LoginViewController: UIViewController {
                         
                             if ( (email == (user["userEmail"] as! String)) && (password == (user["password"] as! String)) ){
                                 
-                            // go to net page...
-                            }else{
-                           // show alert here.....
-                                  }
+                                
+                                if self.switchRememberMe.isOn
+                                {
+                                    userDefault.setValue(self.txtEmail.text, forKey: "userEmail")
+                                    userDefault.set(self.txtPassword.text, forKey: "userPassword")
+                                    
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    userDefault.removeObject(forKey: "userEmail")
+                                    userDefault.removeObject(forKey: "userPassword")
+                                    
+                                }
+                                
+                                loggedIn = true
+                                
+                                
+                                
+                            
+                        }else{
+                      
+                        }
                     }
                 }
             }
