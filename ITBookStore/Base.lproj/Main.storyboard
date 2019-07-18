@@ -84,7 +84,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="switchRememberMe" destination="8bC-Xf-vdC" id="Rgo-3W-sSH"/>
+                        <outlet property="switchRememberMe" destination="OFI-2S-iTy" id="28H-Mh-lL3"/>
                         <outlet property="txtEmail" destination="jSO-jj-vDz" id="whO-mT-fwD"/>
                         <outlet property="txtPassword" destination="E8x-kC-sfm" id="rYr-eA-7zA"/>
                     </connections>

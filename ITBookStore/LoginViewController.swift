@@ -22,7 +22,9 @@ extension UITextField {
 }
 class LoginViewController: UIViewController {
 
-    @IBOutlet var switchRememberMe: UIView!
+    
+     var loggedIn = false
+    @IBOutlet weak var switchRememberMe: UISwitch!
     @IBOutlet weak var txtEmail: UITextField!
         {
         didSet {
@@ -45,6 +47,42 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func btnLogin(_ sender: Any) {
+        var email = self.txtEmail.text!
+        var password = self.txtPassword.text!
+        let userDefault = UserDefaults.standard
+        
+        if let plist = Bundle.main.path(forResource: "UserInfo", ofType: "plist")
+        {
+            if let dict = NSDictionary(contentsOfFile: plist)
+            {
+                if let users = dict["Users"] as? [[String:Any]]
+                {
+                    for user in users
+                    {
+                        
+                            if ( (email == (user["userEmail"] as! String)) && (password == (user["password"] as! String)) ){
+                                
+                            // go to net page...
+                            }else{
+                           // show alert here.....
+                                  }
+                    }
+                }
+            }
+        }
+        if !loggedIn{
+            
+            let alert = UIAlertController(title: "Error", message: "User Email / Password Incorrect", preferredStyle: UIAlertController.Style.alert)
+            
+            let actionOk = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            let actionCanel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(actionOk)
+            alert.addAction(actionCanel)
+            self .present(alert, animated: true ,completion: nil)
+            
+        }
+        
+
     }
     
     override func viewDidLoad() {
