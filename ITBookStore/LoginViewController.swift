@@ -22,10 +22,11 @@ extension UITextField {
 }
 class LoginViewController: UIViewController {
 
+    @IBOutlet var switchRememberMe: UIView!
     @IBOutlet weak var txtEmail: UITextField!
         {
         didSet {
-            self.txtEmail.tintColor = UIColor.lightGray
+            self.txtEmail.tintColor = UIColor.black
             if let image = UIImage(named: "usericon"){
             self.txtEmail.setIcon(image)
             }
@@ -35,12 +36,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
         {
         didSet {
-            self.txtPassword.tintColor = UIColor.lightGray
+            self.txtPassword.tintColor = UIColor.black
             if let image = UIImage(named: "passwordicon"){
                 self.txtPassword.setIcon(image)
             }
         }
     }
+    
+    
+    @IBAction func btnLogin(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
